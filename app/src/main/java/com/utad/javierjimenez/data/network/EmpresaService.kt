@@ -6,9 +6,9 @@ import retrofit2.http.Header
 import retrofit2.http.Path
 
 interface EmpresaService {
-    @GET("task/{nombre del departamento}")
-    suspend fun getHomeWork(
-        @Header("Javier")userName: String,
+    @GET("task/{empresa}")
+    suspend fun getTask(
+        @Header("Authorization")userName: String,
         @Path("empresa")empresa:String
     ): Response<List<EmpresaResponseItem>>
 }

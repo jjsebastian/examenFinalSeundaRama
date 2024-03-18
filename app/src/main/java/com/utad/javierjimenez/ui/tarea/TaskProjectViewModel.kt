@@ -39,7 +39,7 @@ class TaskProjectViewModel: ViewModel() {
     fun getTask(userName: String){
         _uiState.postValue(TaskProjectUIState(isLoading= true))
         viewModelScope.launch(Dispatchers.IO){
-            val response = EmpresaApi.service.getHomeWork(userName, "U-tad")
+            val response = EmpresaApi.service.getTask(userName, "U-tad")
             if(response.isSuccessful){
                 _uiState.postValue(TaskProjectUIState(response = response.body()))
             }else{

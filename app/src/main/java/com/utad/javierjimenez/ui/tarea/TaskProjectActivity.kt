@@ -13,8 +13,8 @@ import com.utad.javierjimenez.ui.adapter.TaskProjectAdapter
 
 class TaskProjectActivity : AppCompatActivity() {
 
-    private lateinit var _binding : ActivityTaskProjectBinding
-    private val binding : ActivityTaskProjectBinding get() = _binding
+    private lateinit var _binding: ActivityTaskProjectBinding
+    private val binding: ActivityTaskProjectBinding get() = _binding
     private val viewModel: TaskProjectViewModel by viewModels()
     private val adapter: TaskProjectAdapter = TaskProjectAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,15 +31,23 @@ class TaskProjectActivity : AppCompatActivity() {
     }
 
     private fun observerViewModel() {
-        viewModel.userName.observe(this){userName ->
-            if(userName!= null){
+        viewModel.userName.observe(this) { userName ->
+            if (userName != null) {
+                //TODO llamamos a la api
                 viewModel.getTask(userName)
             }
         }
-        viewModel.uiState.observe(this){uiState ->
-            if(uiState.response!=null){
+        viewModel.uiState.observe(this) { uiState ->
+            if (uiState.response != null) {
+                adapter.submitList(uiState.response)
+            }
+
+            if (uiState.isLoading) {
+
+            } else {
 
             }
         }
+
     }
 }
